@@ -5,7 +5,7 @@ using SAF.Catalog.Api.Models;
 
 namespace SAF.Catalog.Api.Persistence;
 
-internal class DatabaseContext : IDatabaseContext
+internal partial class DatabaseContext : IDatabaseContext
 {
 	public DatabaseContext(IOptions<DatabaseSettings> databaseSettings)
 	{
@@ -13,6 +13,8 @@ internal class DatabaseContext : IDatabaseContext
 		var database = client.GetDatabase(databaseSettings.Value.Name);
 
 		Products = database.GetCollection<Product>(databaseSettings.Value.CollectionName);
+
+		ExecuteSeedIfDatabaseIsEmpty();
 	}
 
 	public IMongoCollection<Product> Products { get; init; }
