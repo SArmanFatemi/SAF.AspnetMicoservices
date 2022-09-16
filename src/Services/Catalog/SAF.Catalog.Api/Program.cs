@@ -1,4 +1,5 @@
 using SAF.Catalog.Api.Infrastructure.Configuration;
+using SAF.Catalog.Api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddConfigurationServices(builder.Configuration);
+builder.Services.AddRepositories();
 
 var app = builder.Build();
 
