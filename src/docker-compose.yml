@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  saf.catalog.db:
+    image: mongo
+
+  saf.catalog.api:
+    image: ${DOCKER_REGISTRY-}safcatalogapi
+    build:
+      context: .
+      dockerfile: Services/Catalog/SAF.Catalog.Api/Dockerfile
+
+volumes:
+  mongo_data:
