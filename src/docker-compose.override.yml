@@ -1,6 +1,18 @@
 version: '3.4'
 
 services:
+  # Infrastructure
+  portainer:
+    container_name: portainer
+    restart: always
+    ports:
+      - "10000:8000"
+      - "10001:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+  # Catalog Microservice
   saf.catalog.db:
     container_name: saf.catalog.db
     restart: always
@@ -19,6 +31,7 @@ services:
     ports:
       - "8000:80"
 
+  # Basket Microservice
   saf.basket.db:
     container_name: saf.basket.db
     restart: always

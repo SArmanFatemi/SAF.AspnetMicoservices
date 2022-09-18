@@ -1,6 +1,11 @@
 version: '3.4'
 
 services:
+  # Infrastructure
+  portainer:
+    image: portainer/portainer-ce
+
+  # Catalog Microservice
   saf.catalog.db:
     image: mongo
 
@@ -10,6 +15,7 @@ services:
       context: .
       dockerfile: Services/Catalog/SAF.Catalog.Api/Dockerfile
 
+  # Basket Microservice
   saf.basket.db:
     image: redis:alpine
 
@@ -21,3 +27,4 @@ services:
 
 volumes:
   mongo_data:
+  portainer_data:
