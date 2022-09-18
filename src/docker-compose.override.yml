@@ -11,6 +11,30 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
+  
+  pgadmin:
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@saf.com
+      - PGADMIN_DEFAULT_PASSWORD=admin1234
+    restart: always
+    ports:
+      - "10002:80"
+    volumes:
+      - pgadmin_data:/root/.pgadmin
+
+  # Discount Microservice
+  saf.discount.db:
+    container_name: saf.discount.db
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=SAF.Discount.Db
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgressql/data/
 
   # Catalog Microservice
   saf.catalog.db:

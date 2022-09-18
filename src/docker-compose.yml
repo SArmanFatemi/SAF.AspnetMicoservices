@@ -4,6 +4,13 @@ services:
   # Infrastructure
   portainer:
     image: portainer/portainer-ce
+  
+  pgadmin:
+    image: dpage/pgadmin4
+
+  # Discount Microservice
+  saf.discount.db:
+    image: postgres
 
   # Catalog Microservice
   saf.catalog.db:
@@ -28,3 +35,5 @@ services:
 volumes:
   mongo_data:
   portainer_data:
+  postgres_data:
+  pgadmin_data:
