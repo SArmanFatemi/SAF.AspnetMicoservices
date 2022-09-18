@@ -18,3 +18,20 @@ services:
       - saf.catalog.db
     ports:
       - "8000:80"
+
+  saf.basket.db:
+    container_name: saf.basket.db
+    restart: always
+    ports:
+      - "6379:6379"
+
+  saf.basket.api:
+    container_name: saf.basket.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings:ConnectionString=saf.basket.db:6379"
+    depends_on:
+      - saf.basket.db
+    ports:
+      - "8001:80"
+

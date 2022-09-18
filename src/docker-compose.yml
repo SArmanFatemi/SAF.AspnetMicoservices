@@ -10,5 +10,14 @@ services:
       context: .
       dockerfile: Services/Catalog/SAF.Catalog.Api/Dockerfile
 
+  saf.basket.db:
+    image: redis:alpine
+
+  saf.basket.api:
+    image: ${DOCKER_REGISTRY-}safbasketapi
+    build:
+      context: .
+      dockerfile: Services/Basket/SAF.Basket.Api/Dockerfile
+
 volumes:
   mongo_data:
