@@ -23,19 +23,6 @@ services:
     volumes:
       - pgadmin_data:/root/.pgadmin
 
-  # Discount Microservice
-  saf.discount.db:
-    container_name: saf.discount.db
-    environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin123
-      - POSTGRES_DB=SAF.Discount.Db
-    restart: always
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgressql/data/
-
   # Catalog Microservice
   saf.catalog.db:
     container_name: saf.catalog.db
@@ -71,4 +58,28 @@ services:
       - saf.basket.db
     ports:
       - "8001:80"
+
+  # Discount Microservice
+  saf.discount.db:
+    container_name: saf.discount.db
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=SAF.Discount.Db
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgressql/data/
+
+
+  saf.discount.api:
+    container_name: saf.discount.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=saf.discount.db;Port=5432;Database=SAF.Discount.Db;User Id=admin;Password=admin123;"
+    depends_on:
+      - saf.discount.db
+    ports:
+      - "8002:80"
 

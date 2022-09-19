@@ -31,6 +31,13 @@ services:
     build:
       context: .
       dockerfile: Services/Basket/SAF.Basket.Api/Dockerfile
+  
+  # Discount Microservice
+  saf.discount.api:
+    image: ${DOCKER_REGISTRY-}safdiscountapi
+    build:
+      context: .
+      dockerfile: Services/Discount/SAF.Discount.Api/Dockerfile
 
 volumes:
   mongo_data:
