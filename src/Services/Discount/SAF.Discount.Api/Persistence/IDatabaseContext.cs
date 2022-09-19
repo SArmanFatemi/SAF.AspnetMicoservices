@@ -1,9 +1,8 @@
 ﻿using Npgsql;
 
-namespace SAF.Discount.Api.Persistence
+namespace SAF.Discount.Api.Persistence;
+
+public interface IDatabaseContext
 {
-	public interface IDatabaseContext
-	{
-		NpgsqlConnection GetConnection();
-	}
+	NpgsqlConnection GetConnection();
 }
