@@ -21,6 +21,8 @@ if (app.Environment.IsDevelopment())
 	app.UseSwaggerUI();
 }
 
+app.UseDatabaseMigration();
+
 app.UseAuthorization();
 
 app.MapControllers();
