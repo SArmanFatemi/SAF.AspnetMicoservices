@@ -4,6 +4,6 @@ namespace SAF.Discount.Api.Persistence
 {
 	public interface IDatabaseContext
 	{
-		NpgsqlConnection Connection { get; }
+		NpgsqlConnection GetConnection();
 	}
 }

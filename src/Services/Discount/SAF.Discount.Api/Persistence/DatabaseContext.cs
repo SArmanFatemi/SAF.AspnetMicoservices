@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using Npgsql;
 using SAF.Discount.Api.Infrastructure.Configuration;
 
@@ -14,5 +13,5 @@ public class DatabaseContext : IDatabaseContext
 		this.databaseSettings = databaseSettingsOptions.Value;
 	}
 
-	public NpgsqlConnection Connection => new NpgsqlConnection(databaseSettings.ConnectionString);
+	public NpgsqlConnection GetConnection() => new NpgsqlConnection(databaseSettings.ConnectionString);
 }

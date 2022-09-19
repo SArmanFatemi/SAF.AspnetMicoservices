@@ -13,52 +13,49 @@ public class DiscountRepository : IDiscountRepository
 		this.databaseContext = databaseContext;
 		this.databaseContext = databaseContext;
 	}
-	
+
 	public async Task<Coupon?> Get(string productName)
 	{
-		var coupon = await databaseContext.Connection.QueryFirstOrDefaultAsync<Coupon?>(
+		using var connection = databaseContext.GetConnection();
+		var coupon = await connection.QueryFirstOrDefaultAsync<Coupon?>(
 			"SELECT * FROM Coupon WHERE ProductName = @ProductName",
 			new { ProductName = productName }
 		);
-
-		await databaseContext.Connection.DisposeAsync();
 
 		return coupon;
 	}
 
 	public async Task<bool> Create(Coupon coupon)
 	{
+		using var connection = databaseContext.GetConnection();
 		var affected =
-			await databaseContext.Connection.ExecuteAsync(
+			await connection.ExecuteAsync(
 				"INSERT INTO Coupon (ProductName, Description, Amount) VALUES (@ProductName, @Description, @Amount)",
 				new { ProductName = coupon.ProductName, Description = coupon.Description, Amount = coupon.Amount }
 			);
-
-		await databaseContext.Connection.DisposeAsync();
 
 		return affected is not 0;
 	}
 
 	public async Task<bool> Update(Coupon coupon)
 	{
-		var affected = await databaseContext.Connection.ExecuteAsync(
+		using var connection = databaseContext.GetConnection();
+		var affected = await connection.ExecuteAsync(
 			"UPDATE Coupon SET ProductName=@ProductName, Description = @Description, Amount = @Amount WHERE Id = @Id",
 			new { ProductName = coupon.ProductName, Description = coupon.Description, Amount = coupon.Amount, Id = coupon.Id }
 		);
-
-		await databaseContext.Connection.DisposeAsync();
 
 		return affected is not 0;
 	}
 
 	public async Task<bool> Delete(string productName)
 	{
-		var affected = await databaseContext.Connection.ExecuteAsync(
+		using var connection = databaseContext.GetConnection();
+
+		var affected = await connection.ExecuteAsync(
 			"DELETE FROM Coupon WHERE ProductName = @ProductName",
 			new { ProductName = productName }
 		);
-
-		await databaseContext.Connection.DisposeAsync();
 
 		return affected is not 0;
 	}
