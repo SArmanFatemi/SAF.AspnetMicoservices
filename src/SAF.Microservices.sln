@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SAF.Basket.Api", "Services\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Discount", "Discount", "{2E63130D-EEE1-4BD5-9AD1-F79D91ACB887}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAF.Discount.Api", "Services\Discount\SAF.Discount.Api\SAF.Discount.Api.csproj", "{D67A836E-763C-4C15-ADC9-0BAEBE90F84F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SAF.Discount.Api", "Services\Discount\SAF.Discount.Api\SAF.Discount.Api.csproj", "{D67A836E-763C-4C15-ADC9-0BAEBE90F84F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAF.Discount.Grpc", "Services\Discount\SAF.Discount.Grpc\SAF.Discount.Grpc.csproj", "{AC0E37C5-04F1-4E23-B96A-753A846EBAB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{D67A836E-763C-4C15-ADC9-0BAEBE90F84F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D67A836E-763C-4C15-ADC9-0BAEBE90F84F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D67A836E-763C-4C15-ADC9-0BAEBE90F84F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC0E37C5-04F1-4E23-B96A-753A846EBAB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC0E37C5-04F1-4E23-B96A-753A846EBAB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC0E37C5-04F1-4E23-B96A-753A846EBAB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC0E37C5-04F1-4E23-B96A-753A846EBAB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +58,7 @@ Global
 		{1DF28E1B-BEEF-4091-8D43-BE31B55C8C3D} = {49D91327-8632-472F-950A-A1A98327D827}
 		{2E63130D-EEE1-4BD5-9AD1-F79D91ACB887} = {7D0CD246-BCD0-450C-AA45-C046219D32E0}
 		{D67A836E-763C-4C15-ADC9-0BAEBE90F84F} = {2E63130D-EEE1-4BD5-9AD1-F79D91ACB887}
+		{AC0E37C5-04F1-4E23-B96A-753A846EBAB5} = {2E63130D-EEE1-4BD5-9AD1-F79D91ACB887}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F84B087F-8615-4498-8122-BD7860ECC7A8}
