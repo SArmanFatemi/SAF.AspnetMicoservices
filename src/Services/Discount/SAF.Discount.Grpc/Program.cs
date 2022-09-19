@@ -1,3 +1,5 @@
+using SAF.Discount.Grpc.Infrastructure.Configuration;
+using SAF.Discount.Grpc.Repositories;
 using SAF.Discount.Grpc.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,8 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddGrpc();
+builder.Services.AddConfigurationServices(builder.Configuration);
+builder.Services.AddRepositories();
 
 var app = builder.Build();
+
+app.UseDatabaseMigration();
 
 // Configure the HTTP request pipeline.
 app.MapGrpcService<GreeterService>();
