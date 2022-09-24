@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SAF.Basket.Api.GrpcServices;
 using SAF.Basket.Api.Models;
 using SAF.Basket.Api.Repositories;
 using System.Net;
@@ -26,8 +27,17 @@ public class BasketController : ControllerBase
 
 	[HttpPost]
 	[ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
-	public async Task<ActionResult<ShoppingCart>> Update([FromBody] ShoppingCart shoppingCart, CancellationToken cancellationToken)
+	public async Task<ActionResult<ShoppingCart>> Update(
+		[FromServices] DiscountGrpcService discountGrpcService,
+		[FromBody] ShoppingCart shoppingCart,
+		CancellationToken cancellationToken)
 	{
+		foreach (var item in shoppingCart.Items)
+		{
+			var coupon = await discountGrpcService.Get(item.ProductName);
+			if (coupon is not null) item.Price -= coupon.Amount;
+		}
+
 		return Ok(await shoppingCartRepository.Update(shoppingCart, cancellationToken));
 	}
 
