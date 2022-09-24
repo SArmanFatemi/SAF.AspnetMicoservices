@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using SAF.Ordering.Application.Contracts.Persistance;
+using SAF.Ordering.Application.Exceptions;
 using SAF.Ordering.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -32,8 +33,7 @@ public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand>
 		var orderToUpdate = await orderRepository.GetByIdAsync(request.Id); ;
 		if (orderToUpdate is null)
 		{
-			logger.LogError("Order not exist on database");
-			//throw new DirectoryNotFoundException()
+			throw new NotFoundException(nameof(Order), request.Id);
 		}
 
 		orderToUpdate = mapper.Map<Order>(request);

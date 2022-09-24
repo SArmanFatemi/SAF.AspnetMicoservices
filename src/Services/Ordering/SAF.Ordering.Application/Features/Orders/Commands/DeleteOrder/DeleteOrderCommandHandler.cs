@@ -2,6 +2,8 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using SAF.Ordering.Application.Contracts.Persistance;
+using SAF.Ordering.Application.Exceptions;
+using SAF.Ordering.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +34,7 @@ public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand>
 		var orderToDelete = await orderRepository.GetByIdAsync(request.Id);
 		if(orderToDelete is null)
 		{
-			logger.LogError($"Order not exist on databas");
-			// throw exception
+			throw new NotFoundException(nameof(Order), request.Id);
 		}
 
 		await orderRepository.DeleteAsync(orderToDelete);
