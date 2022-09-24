@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SAF.Ordering.Application.Features.Orders.Commands.CheckoutOrder;
 using SAF.Ordering.Application.Features.Orders.Queries.GetOrderList;
 using SAF.Ordering.Domain.Entities;
 
@@ -9,5 +10,6 @@ public class MappingProfile : Profile
 	public MappingProfile()
 	{
 		CreateMap<Order, OrderViewModel>().ReverseMap();
+		CreateMap<Order, CheckoutOrderCommand>().ReverseMap();
 	}
 }
