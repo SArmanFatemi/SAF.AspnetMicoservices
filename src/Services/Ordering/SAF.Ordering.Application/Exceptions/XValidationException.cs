@@ -2,15 +2,15 @@
 
 namespace SAF.Ordering.Application.Exceptions;
 
-internal class ValidationException : ApplicationException
+internal class XValidationException : ApplicationException
 {
-	public ValidationException()
+	public XValidationException()
 		:base("One or more validation failures have accured")
 	{
 		Errors = new Dictionary<string, string[]>();
 	}
 
-	public ValidationException(IEnumerable<ValidationFailure> failures)
+	public XValidationException(IEnumerable<ValidationFailure> failures)
 		: this()
 	{
 		Errors = failures

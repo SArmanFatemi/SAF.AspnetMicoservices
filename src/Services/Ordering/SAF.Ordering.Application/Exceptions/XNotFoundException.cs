@@ -1,8 +1,8 @@
 ﻿namespace SAF.Ordering.Application.Exceptions;
 
-public class NotFoundException : ApplicationException
+public class XNotFoundException : ApplicationException
 {
-	public NotFoundException(string name, object key)
+	public XNotFoundException(string name, object key)
 		: base($"Entity \"{name}\" (${key}) was not found")
 	{
 

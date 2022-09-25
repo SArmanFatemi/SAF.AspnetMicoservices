@@ -33,7 +33,7 @@ public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand>
 		var orderToUpdate = await orderRepository.GetByIdAsync(request.Id); ;
 		if (orderToUpdate is null)
 		{
-			throw new NotFoundException(nameof(Order), request.Id);
+			throw new XNotFoundException(nameof(Order), request.Id);
 		}
 
 		orderToUpdate = mapper.Map<Order>(request);
