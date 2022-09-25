@@ -6,12 +6,11 @@ namespace SAF.Ordering.Infrastructure.Persistence;
 
 public class DatabaseContext : DbContext
 {
-	// TODO: Resolve null problems
 	public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
 	{
 	}
 
-	public DbSet<Order> Orders { get; set; }
+	public DbSet<Order> Orders { get; set; } = null!;
 
 	public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
 	{
