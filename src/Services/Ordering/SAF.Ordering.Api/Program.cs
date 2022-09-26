@@ -1,5 +1,7 @@
+using SAF.Ordering.Api.Extensions;
 using SAF.Ordering.Application;
 using SAF.Ordering.Infrastructure;
+using SAF.Ordering.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,15 @@ if (app.Environment.IsDevelopment())
 	app.UseSwagger();
 	app.UseSwaggerUI();
 }
+
+app.MigrateDatabase<DatabaseContext>(
+	(context, services) =>
+	{
+		var logger = services.GetService<ILogger<DatabaseContext>>();
+		DatabaseContextSeed.SeedAsync(context, logger)
+			.Wait();
+	}
+);
 
 app.UseAuthorization();
 

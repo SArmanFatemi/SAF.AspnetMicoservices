@@ -4,9 +4,28 @@ namespace SAF.Ordering.Domain.Entities;
 
 public class Order : BaseEntity
 {
+	public Order(
+		string userName,
+		decimal totalPrice,
+		string firstName,
+		string lastName,
+		string emailAddress,
+		string country,
+		string state,
+		string addressLine)
+	{
+		UserName = userName;
+		TotalPrice = totalPrice;
+		FirstName = firstName;
+		LastName = lastName;
+		EmailAddress = emailAddress;
+		Country = country;
+		State = state;
+		AddressLine = addressLine;
+	}
+
 	// TODO:
 	// Format
-	// Null problem
 	// Convert Payment and BillingObject to searated objects
 	public string UserName { get; set; }
 	public decimal TotalPrice { get; set; }
@@ -18,12 +37,12 @@ public class Order : BaseEntity
 	public string AddressLine { get; set; }
 	public string Country { get; set; }
 	public string State { get; set; }
-	public string ZipCode { get; set; }
+	public string? ZipCode { get; set; }
 
 	// Payment
-	public string CardName { get; set; }
-	public string CardNumber { get; set; }
-	public string Expiration { get; set; }
-	public string CVV { get; set; }
+	public string? CardName { get; set; }
+	public string? CardNumber { get; set; }
+	public string? Expiration { get; set; }
+	public string? CVV { get; set; }
 	public int PaymentMethod { get; set; }
 }

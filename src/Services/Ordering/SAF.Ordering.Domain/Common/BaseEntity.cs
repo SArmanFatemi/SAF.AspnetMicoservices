@@ -9,7 +9,7 @@ public abstract class BaseEntity
 
 	public DateTime CreateDateTime { get; set; }
 
-	public string LastModifyBy { get; set; }
+	public string? LastModifyBy { get; set; }
 
-	public DateTime LastModificationDateTime { get; set; }
+	public DateTime? LastModificationDateTime { get; set; }
 }
