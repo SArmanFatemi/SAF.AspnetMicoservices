@@ -8,10 +8,6 @@ services:
   pgadmin:
     image: dpage/pgadmin4
 
-  # Discount Microservice
-  saf.discount.db:
-    image: postgres
-
   # Catalog Microservice
   saf.catalog.db:
     image: mongo
@@ -33,11 +29,18 @@ services:
       dockerfile: Services/Basket/SAF.Basket.Api/Dockerfile
   
   # Discount Microservice
+  saf.discount.db:
+    image: postgres
+
   saf.discount.api:
     image: ${DOCKER_REGISTRY-}safdiscountapi
     build:
       context: .
       dockerfile: Services/Discount/SAF.Discount.Api/Dockerfile
+
+  # Ordering Microservice
+  saf.ordering.db:
+    image: mcr.microsoft.com/mssql/server:2017-latest
 
 volumes:
   mongo_data:

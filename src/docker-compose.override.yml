@@ -83,3 +83,12 @@ services:
     ports:
       - "8002:80"
 
+  # Ordering Microservic
+  saf.ordering.db:
+    container_name: saf.ordering.db
+    environment:
+      MSSQL_SA_PASSWORD: Arman@1990
+      ACCEPT_EULA: "Y"
+    restart: always
+    ports:
+      - "1434:1433"
