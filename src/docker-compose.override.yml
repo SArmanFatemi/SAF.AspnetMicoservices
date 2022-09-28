@@ -92,3 +92,14 @@ services:
     restart: always
     ports:
       - "1434:1433"
+
+  saf.ordering.api:
+    container_name: saf.ordering.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:OrderingConnectionString=Server=saf.ordering.db;Database=SAF.Ordering.Db;User Id=sa;Password=Arman@1990;"
+    depends_on:
+      - saf.ordering.db
+    ports:
+      - "8004:80"
+

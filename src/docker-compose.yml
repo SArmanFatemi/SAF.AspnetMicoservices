@@ -42,6 +42,12 @@ services:
   saf.ordering.db:
     image: mcr.microsoft.com/mssql/server:2017-latest
 
+  saf.ordering.api:
+    image: ${DOCKER_REGISTRY-}saforderingapi
+    build:
+      context: .
+      dockerfile: Services/Ordering/SAF.Ordering.Api/Dockerfile
+
 volumes:
   mongo_data:
   portainer_data:
