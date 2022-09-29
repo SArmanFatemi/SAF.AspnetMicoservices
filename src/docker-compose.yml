@@ -8,6 +8,9 @@ services:
   pgadmin:
     image: dpage/pgadmin4
 
+  saf.infra.rabbitmq:
+    image: rabbitmq:3-management-alpine
+
   # Catalog Microservice
   saf.catalog.db:
     image: mongo

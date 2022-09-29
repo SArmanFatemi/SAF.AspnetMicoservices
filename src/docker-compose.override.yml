@@ -23,6 +23,13 @@ services:
     volumes:
       - pgadmin_data:/root/.pgadmin
 
+  saf.infra.rabbitmq:
+    container_name: saf.infra.rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
   # Catalog Microservice
   saf.catalog.db:
     container_name: saf.catalog.db
