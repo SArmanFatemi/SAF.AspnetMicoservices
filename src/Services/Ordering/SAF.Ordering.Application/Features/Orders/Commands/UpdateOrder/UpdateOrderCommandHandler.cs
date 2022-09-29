@@ -4,11 +4,6 @@ using Microsoft.Extensions.Logging;
 using SAF.Ordering.Application.Contracts.Persistance;
 using SAF.Ordering.Application.Exceptions;
 using SAF.Ordering.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SAF.Ordering.Application.Features.Orders.Commands.UpdateOrder;
 
@@ -30,14 +25,13 @@ public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand>
 
 	public async Task<Unit> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
 	{
-		var orderToUpdate = await orderRepository.GetByIdAsync(request.Id); ;
+		var orderToUpdate = await orderRepository.GetByIdAsync(request.Id, true);
 		if (orderToUpdate is null)
 		{
 			throw new XNotFoundException(nameof(Order), request.Id);
 		}
 
 		orderToUpdate = mapper.Map<Order>(request);
-
 		await orderRepository.UpdateAsync(orderToUpdate);
 		logger.LogInformation($"Order {orderToUpdate.Id} is successfully updated");
 

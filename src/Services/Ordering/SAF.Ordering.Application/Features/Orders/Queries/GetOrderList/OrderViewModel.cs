@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SAF.Ordering.Application.Features.Orders.Queries.GetOrderList;
+﻿namespace SAF.Ordering.Application.Features.Orders.Queries.GetOrderList;
 
 public class OrderViewModel
 {
 	// TODO:
 	// Format
-	// Null problem
-	// Convert Payment and BillingObject to searated objects
+	// Convert Payment and BillingObject to value objects
 	public string UserName { get; set; }
 	public decimal TotalPrice { get; set; }
 
@@ -22,12 +15,12 @@ public class OrderViewModel
 	public string AddressLine { get; set; }
 	public string Country { get; set; }
 	public string State { get; set; }
-	public string ZipCode { get; set; }
+	public string? ZipCode { get; set; }
 
 	// Payment
-	public string CardName { get; set; }
-	public string CardNumber { get; set; }
-	public string Expiration { get; set; }
-	public string CVV { get; set; }
+	public string? CardName { get; set; }
+	public string? CardNumber { get; set; }
+	public string? Expiration { get; set; }
+	public string? CVV { get; set; }
 	public int PaymentMethod { get; set; }
 }

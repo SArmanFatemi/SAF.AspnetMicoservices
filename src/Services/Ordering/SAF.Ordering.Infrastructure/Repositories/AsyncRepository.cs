@@ -60,9 +60,13 @@ namespace SAF.Ordering.Infrastructure.Repositories
 			return await query.ToListAsync();
 		}
 
-		// TODO: Resolve null problem
-		public virtual async Task<T> GetByIdAsync(int id) =>
-			await databaseContext.Set<T>().FindAsync(id);
+		public virtual async Task<T?> GetByIdAsync(int id, bool disableTracking = false)
+		{
+			var query = databaseContext.Set<T>().AsQueryable<T>();
+			if (disableTracking) query = query.AsNoTracking();
+
+			return await query.SingleOrDefaultAsync(current => current.Id == id);
+		}
 
 		public async Task<T> AddAsync(T entity)
 		{

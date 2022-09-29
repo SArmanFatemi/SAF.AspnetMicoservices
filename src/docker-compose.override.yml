@@ -72,7 +72,6 @@ services:
     volumes:
       - postgres_data:/var/lib/postgressql/data/
 
-
   saf.discount.api:
     container_name: saf.discount.api
     environment:

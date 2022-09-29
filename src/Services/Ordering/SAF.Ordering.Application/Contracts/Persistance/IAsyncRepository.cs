@@ -23,7 +23,7 @@ public interface IAsyncRepository<T> where T : BaseEntity
 		bool disableTracking = true
 	);
 
-	Task<T> GetByIdAsync(int id);
+	Task<T?> GetByIdAsync(int id, bool disableTracking = false);
 
 	Task<T> AddAsync(T entity);
 

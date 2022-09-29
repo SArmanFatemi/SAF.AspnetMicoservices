@@ -20,11 +20,11 @@ public class DatabaseContext : DbContext
 			{
 				case EntityState.Added:
 					entry.Entity.CreateDateTime = DateTime.Now;
-					entry.Entity.CreateBy = "swn";
+					entry.Entity.CreateBy = "saf";
 					break;
 				case EntityState.Modified:
 					entry.Entity.LastModificationDateTime = DateTime.Now;
-					entry.Entity.LastModifyBy = "swn";
+					entry.Entity.LastModifyBy = "saf";
 					break;
 			}
 		}

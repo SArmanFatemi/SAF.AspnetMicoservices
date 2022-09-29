@@ -26,7 +26,7 @@ public class Order : BaseEntity
 
 	// TODO:
 	// Format
-	// Convert Payment and BillingObject to searated objects
+	// Convert Payment and BillingObject to value objects
 	public string UserName { get; set; }
 	public decimal TotalPrice { get; set; }
 

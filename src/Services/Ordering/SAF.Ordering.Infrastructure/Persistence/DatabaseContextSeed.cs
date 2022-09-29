@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using SAF.Ordering.Domain.Entities;
-using System.Xml.Linq;
 
 namespace SAF.Ordering.Infrastructure.Persistence
 {
@@ -19,12 +18,19 @@ namespace SAF.Ordering.Infrastructure.Persistence
 			}
 		}
 
-		private static IEnumerable<Order> GetPreconfiguredOrders()
-		{
-			return new List<Order>
+		private static IEnumerable<Order> GetPreconfiguredOrders() =>
+			new List<Order>
 			{
-				new ("swn", 350, "Seyed Arman", "Fatemi", "s.arman.fatemi@gmail.com", "Iran",  "Tehran", "Tehran Pars")
+				new (
+					"saf",
+					350,
+					"Seyed Arman",
+					"Fatemi",
+					"s.arman.fatemi@gmail.com",
+					"Iran",
+					"Tehran",
+					"Tehran Pars"
+				)
 			};
-		}
 	}
 }
