@@ -7,9 +7,9 @@ using SAF.Ordering.Domain.Entities;
 
 namespace SAF.Ordering.Application.Mappings;
 
-public class MappingProfile : Profile
+public class OrderMappingProfile : Profile
 {
-	public MappingProfile()
+	public OrderMappingProfile()
 	{
 		CreateMap<Order, OrderViewModel>().ReverseMap();
 		CreateMap<Order, CheckoutOrderCommand>().ReverseMap();
