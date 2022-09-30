@@ -89,6 +89,16 @@ services:
     ports:
       - "8002:80"
 
+  saf.discount.grpc:
+    container_name: saf.discount.grpc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=saf.discount.db;Port=5432;Database=SAF.Discount.Db;User Id=admin;Password=admin123;"
+    depends_on:
+      - saf.discount.db
+    ports:
+      - "8003:80"
+
   # Ordering Microservic
   saf.ordering.db:
     container_name: saf.ordering.db

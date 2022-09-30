@@ -41,6 +41,12 @@ services:
       context: .
       dockerfile: Services/Discount/SAF.Discount.Api/Dockerfile
 
+  saf.discount.grpc:
+    image: ${DOCKER_REGISTRY-}safdiscountgrpc
+    build:
+      context: .
+      dockerfile: Services/Discount/SAF.Discount.Grpc/Dockerfile
+
   # Ordering Microservice
   saf.ordering.db:
     image: mcr.microsoft.com/mssql/server:2017-latest
@@ -56,3 +62,4 @@ volumes:
   portainer_data:
   postgres_data:
   pgadmin_data:
+
