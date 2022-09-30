@@ -1,3 +1,4 @@
+using MassTransit;
 using SAF.Basket.Api.GrpcServices;
 using SAF.Basket.Api.Infrastructure.Configuration;
 using SAF.Basket.Api.Repositories;
@@ -13,6 +14,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddConfigurationServices(builder.Configuration);
 builder.Services.AddRepositories(builder.Configuration);
 builder.Services.AddGrpcServices(builder.Configuration);
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddMassTransit(config =>
+{
+	config.UsingRabbitMq((context, rabbitmqConfig) => {
+		// TODO: Is there any need for strongly type version of this settings?
+		rabbitmqConfig.Host(builder.Configuration["EvenetBusSettings:HostAddress"]);
+
+	});
+});
 
 var app = builder.Build();
 

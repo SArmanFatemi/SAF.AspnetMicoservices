@@ -1,6 +1,6 @@
 ﻿namespace SAF.EventBus.Messages.Events;
 
-public class BasketCheckoutEvent : IntegrationBaseEvent
+public class ShoppingCartCheckoutEvent : IntegrationBaseEvent
 {
 	// TODO:
 	// Format
