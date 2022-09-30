@@ -67,7 +67,7 @@ public class ShoppingCartController : ControllerBase
 		var eventMessage = mapper.Map<ShoppingCartCheckoutEvent>(shoppingCartCheckout);
 
 		eventMessage.TotalPrice = shoppingCart.TotalPrice;
-		await publishEndpoint.Publish(shoppingCartCheckout);
+		await publishEndpoint.Publish(eventMessage);
 
 		await shoppingCartRepository.Delete(shoppingCartCheckout.UserName, cancellationToken);
 

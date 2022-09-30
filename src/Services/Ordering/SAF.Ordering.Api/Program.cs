@@ -1,3 +1,6 @@
+using MassTransit;
+using SAF.EventBus.Messages.Common;
+using SAF.Ordering.Api.EventBusConsumers;
 using SAF.Ordering.Api.Extensions;
 using SAF.Ordering.Application;
 using SAF.Ordering.Infrastructure;
@@ -13,6 +16,21 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddScoped<ShoppingCardCheckoutConsumer>();
+builder.Services.AddMassTransit(config =>
+{
+	config.AddConsumer<ShoppingCardCheckoutConsumer>();
+
+	config.UsingRabbitMq((context, rabbitmqConfig) => {
+		// TODO: Is there any need for strongly type version of this settings?
+		rabbitmqConfig.Host(builder.Configuration["EvenetBusSettings:HostAddress"]);
+
+		rabbitmqConfig.ReceiveEndpoint(EventBusConstants.BasketCheckoutQueue, recieverConfig => {
+			recieverConfig.ConfigureConsumer<ShoppingCardCheckoutConsumer>(context);
+		});
+	});
+});
 
 var app = builder.Build();
 
