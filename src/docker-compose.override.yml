@@ -61,8 +61,11 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings:ConnectionString=saf.basket.db:6379"
+      - "GrpcSettings:DiscountUrl=http://saf.discount.grpc"
+      - "EvenetBusSettings:HostAddress=amqp://guest:guest@saf.infra.rabbitmq:5672"
     depends_on:
       - saf.basket.db
+      - saf.infra.rabbitmq
     ports:
       - "8001:80"
 
@@ -114,8 +117,10 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ConnectionStrings:OrderingConnectionString=Server=saf.ordering.db;Database=SAF.Ordering.Db;User Id=sa;Password=Arman@1990;"
+      - "EvenetBusSettings:HostAddress=amqp://guest:guest@saf.infra.rabbitmq:5672"
     depends_on:
       - saf.ordering.db
+      - saf.infra.rabbitmq
     ports:
       - "8004:80"
 

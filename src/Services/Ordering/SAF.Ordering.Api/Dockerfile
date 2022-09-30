@@ -7,6 +7,7 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["Services/Ordering/SAF.Ordering.Api/SAF.Ordering.Api.csproj", "Services/Ordering/SAF.Ordering.Api/"]
+COPY ["BuildingBlocks/SAF.EventBus.Messages/SAF.EventBus.Messages.csproj", "BuildingBlocks/SAF.EventBus.Messages/"]
 COPY ["Services/Ordering/SAF.Ordering.Application/SAF.Ordering.Application.csproj", "Services/Ordering/SAF.Ordering.Application/"]
 COPY ["Services/Ordering/SAF.Ordering.Domain/SAF.Ordering.Domain.csproj", "Services/Ordering/SAF.Ordering.Domain/"]
 COPY ["Services/Ordering/SAF.Ordering.Infrastructure/SAF.Ordering.Infrastructure.csproj", "Services/Ordering/SAF.Ordering.Infrastructure/"]

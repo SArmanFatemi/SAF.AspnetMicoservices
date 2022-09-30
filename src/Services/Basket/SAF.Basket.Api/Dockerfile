@@ -7,6 +7,7 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["Services/Basket/SAF.Basket.Api/SAF.Basket.Api.csproj", "Services/Basket/SAF.Basket.Api/"]
+COPY ["BuildingBlocks/SAF.EventBus.Messages/SAF.EventBus.Messages.csproj", "BuildingBlocks/SAF.EventBus.Messages/"]
 RUN dotnet restore "Services/Basket/SAF.Basket.Api/SAF.Basket.Api.csproj"
 COPY . .
 WORKDIR "/src/Services/Basket/SAF.Basket.Api"
