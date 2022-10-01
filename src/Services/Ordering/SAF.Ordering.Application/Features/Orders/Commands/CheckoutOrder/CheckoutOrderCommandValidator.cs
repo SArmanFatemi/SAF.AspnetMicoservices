@@ -16,7 +16,6 @@ public class CheckoutOrderCommandValidator : AbstractValidator<CheckoutOrderComm
 			.EmailAddress();
 
 		RuleFor(current => current.TotalPrice)
-			.NotEmpty()
-			.GreaterThan(0);
+			.GreaterThanOrEqualTo(0);
 	}
 }
