@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SAF.Discount.Api.Models;
 using SAF.Discount.Api.Repositories;
 using System.Net;
 
 namespace SAF.Discount.Api.Controllers;
 
-[Route("api/v1/[controller]")]
+[Route("api/v1/discount")]
 [ApiController]
 public class DiscountController : ControllerBase
 {
