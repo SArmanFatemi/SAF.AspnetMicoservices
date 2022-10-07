@@ -1,3 +1,129 @@
 {
-
+	"Routes": [
+		//Catalog API
+		{
+			"DownstreamPathTemplate": "/api/v1/product",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "saf.catalog.api",
+					// The port number is redundant (Docker will handle it)
+					// TODO: Is it possible to remove port property here?
+					"Port": "80"
+				}
+			],
+			"UpstreamPathTemplate": "/Catalog",
+			"UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+			"FileCacheOptions": { "TtlSeconds": 30 }
+		},
+		{
+			"DownstreamPathTemplate": "/api/v1/product/{id}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "saf.catalog.api",
+					"Port": "80"
+				}
+			],
+			"UpstreamPathTemplate": "/Catalog/{id}",
+			"UpstreamHttpMethod": [ "GET", "DELETE" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/v1/product/category/{category}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "saf.catalog.api",
+					"Port": "80"
+				}
+			],
+			"UpstreamPathTemplate": "/Catalog/GetProductByCategory/{category}",
+			"UpstreamHttpMethod": [ "GET" ]
+		},
+		//Basket API
+		{
+			"DownstreamPathTemplate": "/api/v1/shopping-cart/{userName}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "saf.basket.api",
+					"Port": "80"
+				}
+			],
+			"UpstreamPathTemplate": "/Basket/{userName}",
+			"UpstreamHttpMethod": [ "GET", "DELETE" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/v1/shopping-cart",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "saf.basket.api",
+					"Port": "80"
+				}
+			],
+			"UpstreamPathTemplate": "/Basket",
+			"UpstreamHttpMethod": [ "POST" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/v1/shopping-cart/checkout",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "saf.basket.api",
+					"Port": "80"
+				}
+			],
+			"UpstreamPathTemplate": "/Basket/Checkout",
+			"UpstreamHttpMethod": [ "POST" ],
+			"RateLimitOptions": {
+				"ClientWhitelist": [],
+				"EnableRateLimiting": true,
+				"Period": "3s",
+				"PeriodTimespan": 1,
+				"Limit": 1
+			}
+		},
+		//Discount API
+		{
+			"DownstreamPathTemplate": "/api/v1/discount/{productName}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "saf.discount.api",
+					"Port": "80"
+				}
+			],
+			"UpstreamPathTemplate": "/Discount/{productName}",
+			"UpstreamHttpMethod": [ "GET", "DELETE" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/v1/discount",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "saf.discount.api",
+					"Port": "80"
+				}
+			],
+			"UpstreamPathTemplate": "/Discount",
+			"UpstreamHttpMethod": [ "PUT", "POST" ]
+		},
+		//Order API
+		{
+			"DownstreamPathTemplate": "/api/v1/order/{userName}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "saf.ordering.api",
+					"Port": "80"
+				}
+			],
+			"UpstreamPathTemplate": "/Order/{userName}",
+			"UpstreamHttpMethod": [ "GET" ]
+		}
+	],
+	"GlobalConfiguration": {
+		"BaseUrl": "http://localhost:5010"
+	}
 }

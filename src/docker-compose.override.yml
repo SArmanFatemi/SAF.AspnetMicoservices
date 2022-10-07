@@ -29,6 +29,18 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+  
+  saf.infra.ocelotapigateway:
+    container_name: saf.infra.ocelotapigateway
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - saf.catalog.api
+      - saf.basket.api
+      - saf.discount.api
+      - saf.ordering.api
+    ports:
+      - "8010"
 
   # Catalog Microservice
   saf.catalog.db:

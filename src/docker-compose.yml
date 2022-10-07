@@ -11,6 +11,12 @@ services:
   saf.infra.rabbitmq:
     image: rabbitmq:3-management-alpine
 
+  saf.infra.ocelotapigateway:
+    image: ${DOCKER_REGISTRY-}safocelotapigateway
+    build:
+      context: .
+      dockerfile: ApiGateways/SAF.OcelotApiGateway/Dockerfile
+
   # Catalog Microservice
   saf.catalog.db:
     image: mongo
