@@ -9,7 +9,7 @@ using System.Net;
 
 namespace SAF.Basket.Api.Controllers;
 
-[Route("api/v1/[controller]")]
+[Route("api/v1/shopping-cart")]
 [ApiController]
 public class ShoppingCartController : ControllerBase
 {
