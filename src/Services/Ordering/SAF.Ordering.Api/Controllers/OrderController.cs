@@ -8,7 +8,7 @@ using System.Net;
 
 namespace SAF.Ordering.Api.Controllers
 {
-	[Route("api/[controller]")]
+	[Route("api/v1/order")]
 	[ApiController]
 	public class OrderController : ControllerBase
 	{
